@@ -1,0 +1,3 @@
+[submodule "include/SimX"]
+	path = include/SimX
+	url = https://github.com/Andrew-Pollard/SimX.git
