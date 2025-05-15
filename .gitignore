@@ -1,5 +1,5 @@
 # Visual Studio
-.vs/*
+.vs/
 
 # CMake
 CMakeLists.txt.user
