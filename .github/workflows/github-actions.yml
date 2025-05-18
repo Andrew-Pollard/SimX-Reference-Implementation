@@ -28,3 +28,6 @@ jobs:
 
       - name: Examine CMake build output
         run: tree
+
+      - name: Check .so exports
+        run: na out/libref.so
