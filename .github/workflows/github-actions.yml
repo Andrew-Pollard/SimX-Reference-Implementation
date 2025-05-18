@@ -22,3 +22,6 @@ jobs:
 
       - name: Examine output
         run: tree
+
+      - name: Run make
+        run: make
