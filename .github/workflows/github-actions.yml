@@ -12,8 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Examine directory
+      - name: Examine input
         run: ls -la
 
       - name: Run CMake
-        run: cmake
+        run: cmake CMakeLists.txt
+
+      - name: Examine output
+        run: ls -la
