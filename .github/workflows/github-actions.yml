@@ -30,4 +30,4 @@ jobs:
         run: tree
 
       - name: Check .so exports
-        run: na out/libref.so
+        run: nm out/libref.so
