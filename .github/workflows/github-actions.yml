@@ -17,14 +17,8 @@ jobs:
       - name: Examine input
         run: tree
 
-      - name: Run CMake
-        run: cmake CMakeLists.txt
+      - name: Generate CMake buildsystem
+        run: cmake -B out
 
       - name: Examine CMake output
-        run: tree
-
-      - name: Run make
-        run: make
-
-      - name: Examine make output
         run: tree
