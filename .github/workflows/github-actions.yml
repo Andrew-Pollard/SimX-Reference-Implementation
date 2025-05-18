@@ -20,8 +20,11 @@ jobs:
       - name: Run CMake
         run: cmake CMakeLists.txt
 
-      - name: Examine output
+      - name: Examine CMake output
         run: tree
 
       - name: Run make
         run: make
+
+      - name: Examine make output
+        run: tree
