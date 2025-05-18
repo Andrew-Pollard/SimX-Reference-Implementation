@@ -12,5 +12,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Examine directory
+        run: ls -la
+
       - name: Run CMake
         run: cmake
