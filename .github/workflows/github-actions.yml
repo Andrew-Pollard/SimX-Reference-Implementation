@@ -20,5 +20,11 @@ jobs:
       - name: Generate CMake buildsystem
         run: cmake -B out
 
-      - name: Examine CMake output
+      - name: Examine CMake generation output
+        run: tree
+
+      - name: Build CMake project
+        run: cmake --build out
+
+      - name: Examine CMake build output
         run: tree
