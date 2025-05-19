@@ -18,16 +18,22 @@ jobs:
         run: tree
 
       - name: Generate CMake buildsystem
-        run: cmake -B out
+        run: cmake -B build/
 
       - name: Examine CMake generation output
         run: tree
 
       - name: Build CMake project
-        run: cmake --build out
+        run: cmake --build build/
 
       - name: Examine CMake build output
         run: tree
 
       - name: Check .so exports
-        run: nm out/libref.so
+        run: nm build/libref.so
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: build/libref.so
