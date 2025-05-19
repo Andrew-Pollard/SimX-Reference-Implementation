@@ -57,7 +57,7 @@ jobs:
         run: tree
 
       - name: Build CMake project
-        run: cmake --build build/
+        run: cmake --build build/ --config Release
 
       - name: Examine CMake build output
         run: tree
