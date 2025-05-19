@@ -5,7 +5,7 @@ on: push
 
 
 jobs:
-  build:
+  build-linux-x64:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,3 +39,39 @@ jobs:
           path: |
             include/
             build/libref.so
+
+
+  build-win-x64:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Examine input
+        run: tree
+
+      - name: Generate CMake buildsystem
+        run: cmake -B build/
+
+      - name: Examine CMake generation output
+        run: tree
+
+      - name: Build CMake project
+        run: cmake --build build/
+
+      - name: Examine CMake build output
+        run: tree
+
+      - name: Check .so exports
+        run: nm build/ref.dll
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-archive-win-x64
+          path: |
+            include/
+            build/ref.dll
