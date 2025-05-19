@@ -14,11 +14,17 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Generate CMake buildsystem
-        run: cmake -B build/
+      - name: Generate debug CMake buildsystem
+        run: cmake -B build/Debug/ -D CMAKE_BUILD_TYPE=Debug
 
-      - name: Build CMake project
-        run: cmake --build build/
+      - name: Build debug CMake project
+        run: cmake --build build/Debug/
+
+      - name: Generate release CMake buildsystem
+        run: cmake -B build/Release/ -D CMAKE_BUILD_TYPE=Release
+
+      - name: Build release CMake project
+        run: cmake --build build/Release/
 
       - name: Examine CMake build output
         run: tree
@@ -29,7 +35,8 @@ jobs:
           name: deployment-archive-linux-x64
           path: |
             include/
-            build/libref.so
+            build/Debug/libref.so
+            build/Release/libref.so
 
 
   build-win-x64:
@@ -44,7 +51,10 @@ jobs:
       - name: Generate CMake buildsystem
         run: cmake -B build/
 
-      - name: Build CMake project
+      - name: Build debug CMake project
+        run: cmake --build build/ --config Debug
+
+      - name: Build release CMake project
         run: cmake --build build/ --config Release
 
       - name: Examine CMake build output
@@ -56,4 +66,5 @@ jobs:
           name: deployment-archive-win-x64
           path: |
             include/
+            build/Debug/ref.dll
             build/Release/ref.dll
