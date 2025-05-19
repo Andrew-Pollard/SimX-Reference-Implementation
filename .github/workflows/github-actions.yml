@@ -29,9 +29,6 @@ jobs:
       - name: Examine CMake build output
         run: tree
 
-      - name: Check .so exports
-        run: nm build/libref.so
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -65,13 +62,10 @@ jobs:
       - name: Examine CMake build output
         run: tree
 
-      - name: Check .so exports
-        run: nm build/ref.dll
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: deployment-archive-win-x64
           path: |
             include/
-            build/ref.dll
+            build/Debug/ref.dll
