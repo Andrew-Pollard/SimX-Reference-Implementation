@@ -14,14 +14,8 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Examine input
-        run: tree
-
       - name: Generate CMake buildsystem
         run: cmake -B build/
-
-      - name: Examine CMake generation output
-        run: tree
 
       - name: Build CMake project
         run: cmake --build build/
@@ -47,14 +41,8 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Examine input
-        run: tree
-
       - name: Generate CMake buildsystem
         run: cmake -B build/
-
-      - name: Examine CMake generation output
-        run: tree
 
       - name: Build CMake project
         run: cmake --build build/ --config Release
@@ -68,4 +56,4 @@ jobs:
           name: deployment-archive-win-x64
           path: |
             include/
-            build/Debug/ref.dll
+            build/Release/ref.dll
