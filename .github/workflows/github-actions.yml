@@ -36,4 +36,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: deployment-archive-linux-x64
-          path: build/libref.so
+          path: |
+            include/
+            build/libref.so
