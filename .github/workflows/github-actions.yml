@@ -29,14 +29,18 @@ jobs:
       - name: Examine CMake build output
         run: tree
 
+      - name: Create deployment folder
+        run: |
+          mkdir deployment-archive-linux-x64
+          cp -r include deployment-archive-linux-x64/include
+          cp build/Debug/libref.so deployment-archive-win-x64/bin/debug/libref.so
+          cp build/Release/libref.so deployment-archive-win-x64/bin/release/libref.so
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: deployment-archive-linux-x64
-          path: |
-            include/
-            build/Debug/libref.so
-            build/Release/libref.so
+          path: deployment-archive-linux-x64
 
 
   build-win-x64:
@@ -60,11 +64,15 @@ jobs:
       - name: Examine CMake build output
         run: tree
 
+      - name: Create deployment folder
+        run: |
+          mkdir deployment-archive-win-x64
+          cp -r include deployment-archive-win-x64/include
+          cp build/Debug/ref.dll deployment-archive-win-x64/bin/debug/ref.dll
+          cp build/Release/ref.dll deployment-archive-win-x64/bin/release/ref.dll
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: deployment-archive-win-x64
-          path: |
-            include/
-            build/Debug/ref.dll
-            build/Release/ref.dll
+          path: deployment-archive-win-x64
