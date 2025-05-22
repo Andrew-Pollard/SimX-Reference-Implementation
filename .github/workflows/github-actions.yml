@@ -32,7 +32,7 @@ jobs:
       - name: Create deployment folder
         run: |
           mkdir -p deployment-archive-linux-x64/include/
-          cp -r include/simx.h deployment-archive-linux-x64/include/simx.h
+          cp -r include/SimX/simx.h deployment-archive-linux-x64/include/SimX/simx.h
 
           mkdir -p deployment-archive-linux-x64/bin/debug/
           cp build/Debug/libref.so deployment-archive-linux-x64/bin/debug/libref.so
@@ -74,7 +74,7 @@ jobs:
       - name: Create deployment folder
         run: |
           mkdir -p deployment-archive-win-x64/include/
-          cp -r include/simx.h deployment-archive-win-x64/include/simx.h
+          cp -r include/SimX/simx.h deployment-archive-win-x64/include/SimX/simx.h
 
           mkdir -p deployment-archive-win-x64/bin/debug/
           cp build/Debug/ref.dll deployment-archive-win-x64/bin/debug/ref.dll
