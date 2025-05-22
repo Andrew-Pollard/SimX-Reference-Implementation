@@ -31,7 +31,7 @@ jobs:
 
       - name: Create deployment folder
         run: |
-          mkdir -p deployment-archive-linux-x64/include/
+          mkdir -p deployment-archive-linux-x64/include/SimX/
           cp -r include/SimX/simx.h deployment-archive-linux-x64/include/SimX/simx.h
 
           mkdir -p deployment-archive-linux-x64/bin/debug/
@@ -73,7 +73,7 @@ jobs:
 
       - name: Create deployment folder
         run: |
-          mkdir -p deployment-archive-win-x64/include/
+          mkdir -p deployment-archive-win-x64/include/SimX/
           cp -r include/SimX/simx.h deployment-archive-win-x64/include/SimX/simx.h
 
           mkdir -p deployment-archive-win-x64/bin/debug/
