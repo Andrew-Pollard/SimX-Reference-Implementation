@@ -31,13 +31,13 @@ jobs:
 
       - name: Create deployment folder
         run: |
-          mkdir deployment-archive-linux-x64
+          mkdir -p deployment-archive-linux-x64
           cp -r include deployment-archive-linux-x64/include
 
-          mkdir deployment-archive-linux-x64/bin/debug/
+          mkdir -p deployment-archive-linux-x64/bin/debug/
           cp build/Debug/libref.so deployment-archive-win-x64/bin/debug/libref.so
 
-          mkdir deployment-archive-linux-x64/bin/release/
+          mkdir -p deployment-archive-linux-x64/bin/release/
           cp build/Release/libref.so deployment-archive-win-x64/bin/release/libref.so
 
       - name: Examine deployment folder
@@ -73,13 +73,13 @@ jobs:
 
       - name: Create deployment folder
         run: |
-          mkdir deployment-archive-win-x64
+          mkdir -p deployment-archive-win-x64
           cp -r include deployment-archive-win-x64/include
 
-          mkdir deployment-archive-win-x64/bin/debug/
+          mkdir -p deployment-archive-win-x64/bin/debug/
           cp build/Debug/ref.dll deployment-archive-win-x64/bin/debug/ref.dll
 
-          mkdir deployment-archive-win-x64/bin/release/
+          mkdir -p deployment-archive-win-x64/bin/release/
           cp build/Release/ref.dll deployment-archive-win-x64/bin/release/ref.dll
 
       - name: Examine deployment folder
