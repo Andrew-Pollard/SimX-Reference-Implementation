@@ -31,14 +31,14 @@ jobs:
 
       - name: Create deployment folder
         run: |
-          mkdir -p deployment-archive-linux-x64
-          cp -r include deployment-archive-linux-x64/include
+          mkdir -p deployment-archive-linux-x64/include/
+          cp -r include/simx.h deployment-archive-linux-x64/include/simx.h
 
           mkdir -p deployment-archive-linux-x64/bin/debug/
-          cp build/Debug/libref.so deployment-archive-win-x64/bin/debug/libref.so
+          cp build/Debug/libref.so deployment-archive-linux-x64/bin/debug/libref.so
 
           mkdir -p deployment-archive-linux-x64/bin/release/
-          cp build/Release/libref.so deployment-archive-win-x64/bin/release/libref.so
+          cp build/Release/libref.so deployment-archive-linux-x64/bin/release/libref.so
 
       - name: Examine deployment folder
         run: tree
@@ -73,14 +73,19 @@ jobs:
 
       - name: Create deployment folder
         run: |
-          mkdir -p deployment-archive-win-x64
-          cp -r include deployment-archive-win-x64/include
+          mkdir -p deployment-archive-win-x64/include/
+          cp -r include/simx.h deployment-archive-win-x64/include/simx.h
 
           mkdir -p deployment-archive-win-x64/bin/debug/
           cp build/Debug/ref.dll deployment-archive-win-x64/bin/debug/ref.dll
+          cp build/Debug/ref.exp deployment-archive-win-x64/bin/debug/ref.exp
+          cp build/Debug/ref.lib deployment-archive-win-x64/bin/debug/ref.lib
+          cp build/Debug/ref.pdb deployment-archive-win-x64/bin/debug/ref.pdb
 
           mkdir -p deployment-archive-win-x64/bin/release/
           cp build/Release/ref.dll deployment-archive-win-x64/bin/release/ref.dll
+          cp build/Release/ref.exp deployment-archive-win-x64/bin/release/ref.exp
+          cp build/Release/ref.lib deployment-archive-win-x64/bin/release/ref.lib
 
       - name: Examine deployment folder
         run: tree
