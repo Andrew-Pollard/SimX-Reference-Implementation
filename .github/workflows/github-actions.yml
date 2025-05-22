@@ -36,6 +36,9 @@ jobs:
           cp build/Debug/libref.so deployment-archive-win-x64/bin/debug/libref.so
           cp build/Release/libref.so deployment-archive-win-x64/bin/release/libref.so
 
+      - name: Examine deployment folder
+        run: tree
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -70,6 +73,9 @@ jobs:
           cp -r include deployment-archive-win-x64/include
           cp build/Debug/ref.dll deployment-archive-win-x64/bin/debug/ref.dll
           cp build/Release/ref.dll deployment-archive-win-x64/bin/release/ref.dll
+
+      - name: Examine deployment folder
+        run: tree
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
