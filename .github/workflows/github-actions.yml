@@ -1,0 +1,97 @@
+name: Build
+
+
+on: push
+
+
+jobs:
+  build-linux-x64:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Generate debug CMake buildsystem
+        run: cmake -B build/Debug/ -D CMAKE_BUILD_TYPE=Debug
+
+      - name: Build debug CMake project
+        run: cmake --build build/Debug/
+
+      - name: Generate release CMake buildsystem
+        run: cmake -B build/Release/ -D CMAKE_BUILD_TYPE=Release
+
+      - name: Build release CMake project
+        run: cmake --build build/Release/
+
+      - name: Examine CMake build output
+        run: tree
+
+      - name: Create deployment folder
+        run: |
+          mkdir -p deployment-archive-linux-x64/include/SimX/
+          cp -r include/SimX/simx.h deployment-archive-linux-x64/include/SimX/simx.h
+
+          mkdir -p deployment-archive-linux-x64/bin/debug/
+          cp build/Debug/libref.so deployment-archive-linux-x64/bin/debug/libref.so
+
+          mkdir -p deployment-archive-linux-x64/bin/release/
+          cp build/Release/libref.so deployment-archive-linux-x64/bin/release/libref.so
+
+      - name: Examine deployment folder
+        run: tree
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-archive-linux-x64
+          path: deployment-archive-linux-x64
+
+
+  build-win-x64:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Generate CMake buildsystem
+        run: cmake -B build/
+
+      - name: Build debug CMake project
+        run: cmake --build build/ --config Debug
+
+      - name: Build release CMake project
+        run: cmake --build build/ --config Release
+
+      - name: Examine CMake build output
+        run: tree
+
+      - name: Create deployment folder
+        run: |
+          mkdir -p deployment-archive-win-x64/include/SimX/
+          cp -r include/SimX/simx.h deployment-archive-win-x64/include/SimX/simx.h
+
+          mkdir -p deployment-archive-win-x64/bin/debug/
+          cp build/Debug/ref.dll deployment-archive-win-x64/bin/debug/ref.dll
+          cp build/Debug/ref.exp deployment-archive-win-x64/bin/debug/ref.exp
+          cp build/Debug/ref.lib deployment-archive-win-x64/bin/debug/ref.lib
+          cp build/Debug/ref.pdb deployment-archive-win-x64/bin/debug/ref.pdb
+
+          mkdir -p deployment-archive-win-x64/bin/release/
+          cp build/Release/ref.dll deployment-archive-win-x64/bin/release/ref.dll
+          cp build/Release/ref.exp deployment-archive-win-x64/bin/release/ref.exp
+          cp build/Release/ref.lib deployment-archive-win-x64/bin/release/ref.lib
+
+      - name: Examine deployment folder
+        run: tree
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-archive-win-x64
+          path: deployment-archive-win-x64
